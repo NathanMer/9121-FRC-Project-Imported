@@ -75,7 +75,7 @@ public final class Constants {
     public static final double kPositionTolerance = 0.5;
 
     //was .5
-    public static final double kIntakePower = 1;
+    public static final double kIntakePower = 3.5;
 
     public static final double kRetractDistance = -3.5;
 
@@ -87,7 +87,7 @@ public final class Constants {
     public static final int kBottomCanId = 4;
 
     public static final int kCurrentLimit = 80;
-
+//5 and 7
     public static final double kTopPower = 5;
     public static final double kBottomPower = 7;
   }

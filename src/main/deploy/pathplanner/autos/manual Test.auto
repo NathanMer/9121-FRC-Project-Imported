@@ -12,9 +12,22 @@
     "data": {
       "commands": [
         {
-          "type": "named",
+          "type": "race",
           "data": {
-            "name": "launch"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "launch"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              }
+            ]
           }
         },
         {
@@ -26,13 +39,7 @@
         {
           "type": "named",
           "data": {
-            "name": "feedLauncher"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 2.0
+            "name": "armDown"
           }
         }
       ]

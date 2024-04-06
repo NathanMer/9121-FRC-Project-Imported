@@ -28,6 +28,8 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.commands.ExampleCommand;
+import frc.commands.TestCommand;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
@@ -124,13 +126,15 @@ public class RobotContainer {
     
     NamedCommands.registerCommand("intake", new InstantCommand(() -> m_intake.setPower(-1.0),m_intake));
     NamedCommands.registerCommand("stopIntake", new InstantCommand(() -> m_intake.setPower(-1.0),m_intake));
-    NamedCommands.registerCommand("feedLauncher", new InstantCommand(() -> m_intake.feedLauncher(m_launcher)));
+    NamedCommands.registerCommand("feedLauncher", new RunCommand(() -> m_intake.feedLauncher(m_launcher),m_launcher));
 
     //NamedCommands.registerCommand("launch", new RunCommand(() -> m_launcher.runLauncher()));
     //NamedCommands.registerCommand("launchCon", new SequentialCommandGroup(new RunCommand(()-> m_launcher.runLauncher().withTimeout(2.0))));
     NamedCommands.registerCommand("shoot", new ParallelCommandGroup(new RunCommand(() -> m_launcher.runLauncher()).withTimeout(2.0), new RunCommand(() -> m_intake.feedLauncher(m_launcher)).withTimeout(2.0)));
     NamedCommands.registerCommand("marker1", Commands.print("Finished"));
     NamedCommands.registerCommand("marker2", new PrintCommand("Finished"));
+    //NamedCommands.registerCommand("test1", new ExampleCommand<IntakeSubsytem>(m_launcher, m_intake));
+    NamedCommands.registerCommand("test2", new TestCommand(m_intake))   ;
   }
 
 
@@ -309,15 +313,15 @@ public class RobotContainer {
    // return new RunCommand(() -> m_launcher.runLauncher(), m_launcher).withTimeout(2).andThen(m_intake.feedLauncher(m_launcher)).andThen(AutoBuilder.buildAuto("Test Left")).andThen(AutoBuilder.buildAuto("Comeback Test"));
 
    //Nathan's Pathplanner auto
-     // return choose.getSelected();
+      return choose.getSelected();
       
     //pathplanner auto with shoot before and after
     //return new RunCommand(() -> m_launcher.runLauncher(), m_launcher).withTimeout(2).andThen(m_intake.feedLauncher(m_launcher)).andThen(choose.getSelected()).andThen(new RunCommand(() -> m_launcher.runLauncher(), m_launcher)).withTimeout(2).andThen(m_intake.feedLauncher(m_launcher));
 
 //github test
-        //change
-         return new RunCommand(() -> m_launcher.runLauncher(), m_launcher).withTimeout(2).andThen(m_intake.feedLauncher(m_launcher)).andThen(AutoBuilder.buildAuto("Only Left"));
-   
+        
+       //  return new RunCommand(() -> m_launcher.runLauncher(), m_launcher).withTimeout(2).andThen(m_intake.feedLauncher(m_launcher)).andThen(AutoBuilder.buildAuto("Only Left"));
+            //return new WaitCommand(2.0);
    
    //return new InstantCommand(()->Timer.delay(5.0)).andThen(swerveControllerCommand.andThen(()-> m_robotDrive.drive(.25,.25,0,false,false)));
     //return NamedCommands.getCommand("shoot").andThen(swerveControllerCommand.andThen(()-> m_robotDrive.drive(.25,.25,0,false,false)));

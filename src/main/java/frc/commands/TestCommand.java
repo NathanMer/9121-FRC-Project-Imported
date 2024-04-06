@@ -14,11 +14,18 @@ public class TestCommand extends Command {
     @Override
     public void initialize() {
        // m_intake.set(1.0);
+       System.out.println("Initalized");
     }
 
     @Override
     public void end(boolean interrupted) {
        // m_intake.set(0.0);
+    }
+
+    @Override
+    public boolean isFinished() {
+        System.out.println("Finished Command");
+        return true;
     }
 
     // execute() defaults to do nothing
